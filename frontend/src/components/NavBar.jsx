@@ -1,8 +1,16 @@
 import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import logo from "../assets/assets/assets_frontend/logooo.png"
+import { useState } from "react";
+import { Navigate } from "react-router-dom";
+import dp from "../assets/assets/assets_frontend/profile_pic.png"
+import dpp from "../assets/assets/assets_frontend/dropdown_icon.svg"
 function NavBar() {
+
     const Navigate=useNavigate();
+    const [showMenu,setshowMenu] = useState(false)
+    const [token,setToken] = useState(true) //if we have tokn then we are logged in
+
     return (
         <div className="flex items-center justify-between text-sm py-4 mb-5 border-b border-b gray-400">
             <img className="w-44 cursor-pointer" src= {logo} alt="" />
@@ -27,7 +35,24 @@ function NavBar() {
                 </NavLink>
             </ul>
             <div className="flex items-center gap-4">
-                <button onClick={()=>Navigate('/login')} className="bg-primary text-white px-8 py-3 rounded-full font-light hidden md:block">Create Account</button>
+                {
+                    token
+                    ?<div className="flex items-center gap-2 cursor-pointer group relaive">
+                        <img className = "w-8 rounded-full" src = {dp} alt="."></img>
+                        <img className="w-2.5" src = {dpp} alt="."></img>
+                        <div className="absolute top-0 right-0 pt-14 text-base font-medium text-gray-600 z-20  hidden group-hover:block">
+                            <div className="min-w-48 bg-stone-100 rounded flex flex-col gap-4 p-4 ">
+                                <p onClick ={()=>Navigate('MyProfile')} className="hover:text-black cursor-pointer">My Profile</p>
+                                <p onClick={()=> Navigate('MyAppointments')} className="hover:text-black cursor-pointer">My Appointments</p>
+                                <p onClick ={()=> setToken(false) }className="hover:text-black cursor-pointer">Logout</p>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    :<button onClick={()=>Navigate('/login')} className="bg-primary text-white px-8 py-3 rounded-full font-light hidden md:block">Create Account</button>
+
+                }
             </div>
         </div>
     )
