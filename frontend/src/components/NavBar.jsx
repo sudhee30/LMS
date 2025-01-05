@@ -13,7 +13,7 @@ function NavBar() {
 
     return (
         <div className="flex items-center justify-between text-sm py-4 mb-5 border-b border-b gray-400">
-            <img className="w-44 cursor-pointer" src= {logo} alt="" />
+            <img onClick ={()=>{Navigate('/')}} className="w-44 cursor-pointer" src= {logo} alt="" />
 
             <ul className="hidden md:flex items-smart gap-5 font-medium">
                 <NavLink to="/">
@@ -50,7 +50,7 @@ function NavBar() {
 
 
                     </div>
-                    :<button onClick={()=>Navigate('/login')} className="bg-primary text-white px-8 py-3 rounded-full font-light hidden md:block">Create Account</button>
+                    :<button onClick={()=>Navigate('Login')} className="bg-primary text-white px-8 py-3 rounded-full font-light hidden md:block">Create Account</button>
 
                 }
             </div>
